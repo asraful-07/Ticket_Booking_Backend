@@ -2,6 +2,7 @@ package user
 
 import (
 	"tickets/internal/auth"
+	"tickets/internal/middlewares"
 	"time"
 
 	"github.com/labstack/echo/v5"
@@ -16,6 +17,7 @@ func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
 
     api := e.Group("/api/v1/auth")
 
-	api.POST("/users", userHandler.CreateUser)
+	api.POST("/register", userHandler.CreateUser)
 	api.POST("/login", userHandler.LoginUser)
+	api.GET("/me", userHandler.GetMe, middlewares.AuthMiddleware(jwtService))
 }
