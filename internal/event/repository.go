@@ -65,3 +65,4 @@ func (r *repository) GetByID(eventId uint) (*Event, error) {
 func (r *repository) Update(event *Event) error {
 	return r.db.Save(event).Error
 }
+
