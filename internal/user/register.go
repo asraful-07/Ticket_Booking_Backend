@@ -2,6 +2,7 @@ package user
 
 import (
 	"tickets/internal/auth"
+	"tickets/internal/config"
 	"tickets/internal/middlewares"
 	"time"
 
@@ -9,9 +10,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func RegisterRoutes(e *echo.Echo, db *gorm.DB) {
+func RegisterRoutes(e *echo.Echo, db *gorm.DB, cfg *config.Config) {
 	userRepo := NewRepository(db)
-	jwtService := auth.NewJWTService("BETTER_AUTH_SECRET=Sy9frXLrOngAQXcMiuF7yAfmNTUgziBH", 24*time.Hour)
+	jwtService := auth.NewJWTService(cfg.JWTSecretKey, 24*time.Hour)
 	userService := NewService(userRepo, jwtService)
 	userHandler := NewHandler(userService)
 

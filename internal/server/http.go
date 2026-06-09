@@ -1,9 +1,11 @@
 package server
 
 import (
+	"tickets/internal/booking"
 	"tickets/internal/config"
-	"tickets/internal/user"
 	"tickets/internal/event"
+	"tickets/internal/user"
+
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v5"
 	"github.com/labstack/echo/v5/middleware"
@@ -29,8 +31,10 @@ func StartServer( db *gorm.DB, cfg *config.Config) {
 	e.Use(middleware.RequestLogger())
 
 	// All Routes
-	user.RegisterRoutes(e, db)
+	user.RegisterRoutes(e, db, cfg)
 	event.RegisterRoutes(e, db)
+    booking.RegisterRoutes(e, db, cfg)
+
 	if err := e.Start(":" + cfg.PORT); err != nil {
 		e.Logger.Error("failed to start server", "error", err)
 	}

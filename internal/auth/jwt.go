@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	jwtSecretKey           = "BETTER_AUTH_SECRET=Sy9frXLrOngAQXcMiuF7yAfmNTUgziBH"
+	jwtSecretKey           = "Sy9frXLrOngAQXcMiuF7yAfmNTUgziBH"
 	defaultTokenExpiration = 24 * time.Hour // 7 days in hours
 )
 
