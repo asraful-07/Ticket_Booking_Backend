@@ -147,7 +147,7 @@ http://localhost:8080
 Check the health route:
 
 ```bash
-curl http://localhost:8080/health
+curl http://localhost:8080/api/v1
 ```
 
 Expected response:
